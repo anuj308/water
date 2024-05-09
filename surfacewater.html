@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surface water Availability</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .c {
+            
+            background-color: rgb(124, 146, 243);
+            
+        }
+        .m {
+            border:black solid;
+            /* background-color: antiquewhite; */
+            
+            border-radius:5px;
+            margin-left:10%;
+        }
+        .nn {
+            
+            border:black solid;
+          background-image: url("https://img.freepik.com/premium-photo/water-drop-green-leaves-after-rain-well-freshness-environment-natural-light_38812-502.jpg?size=626&ext=jpg");
+            padding: 10px;
+            border-radius:5px;
+            background-repeat: no-repeat;
+            background-size:cover;
+            margin-left:10%;
+            margin-right:30%;
+        }
+        header {
+            background-color: #100652;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            border:black solid;
+           
+            padding: 10px;
+            border-radius:5px;
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        section {
+            padding: 20px;
+        }
+        canvas {
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Surface water Availability</h1>
+    </header>
+    <nav>
+        <ul >
+            <li class="c"><a href="#overview">Overview</a></li>
+            <li><a href="#barChart">Bar Chart</a></li>
+           
+        </ul>
+    </nav>
+   
+    <section id="barChart">
+        <h2>Surface water Levels Worldwide (Bar Chart)</h2>
+        <canvas id="barChartCanvas" width="600" height="400"></canvas>
+    </section>
+
+
+    <script>
+        // Sample data for bar chart
+        const barChartData = {
+            labels: ['Ground ice and PermaFrost(69%)', 'lakes(20.9%)', 'Soil moisture(3.8%)','Rivers(0.49%)','Atmosphere(3%)','Living things(0.26%)'],
+            datasets: [{
+                 label: 'Surface water Availability (in percent)',
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF99CC'
+                ],
+                 borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                data: [69,20.9,3.8,0.49,3.00,0.26] // Sample data values
+            }]
+        };
+
+       
+
+        // Creating bar chart
+        var barChartCtx = document.getElementById('barChartCanvas').getContext('2d');
+        var barChart = new Chart(barChartCtx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+
+       
+    </script>
+     <section id="overview">
+        <h2>Surface water Overview</h2>
+        <section class="nn">
+        <p>
+            Surface water refers to water sources visible on the Earth's surface, including rivers, lakes, reservoirs, ponds, and wetlands. These bodies of water play a crucial role in supporting various ecosystems, providing habitats for aquatic plants and animals, and serving as sources of drinking water, irrigation, recreation, and transportation for human communities. Surface water is replenished primarily by precipitation, which fills rivers and lakes through runoff and infiltration. However, surface water availability can vary seasonally and regionally, influenced by factors such as climate, topography, land use, and human activities such as dam construction and water diversion. Sustainable management of surface water resources is essential for maintaining ecological balance, supporting biodiversity, and meeting the needs of both human populations and the environment.
+
+
+
+
+
+
+        </p>
+        </section>
+        </section>
+    <img class="m" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Fresh_Water_Source.png" width="50%">
+    <section>
+        <img class="m" src="https://img.freepik.com/free-vector/natural-environment-lanscape-scene_1308-32135.jpg?t=st=1711964780~exp=1711968380~hmac=668496f61e4d1039785417353287099d97305ba13abc0842654eaf73cb34e60b&w=900" height="25%" width="25%">
+        <img src="" height="" width="">
+        <img src="" height="" width="">
+    </section>
+</body>
+</html>

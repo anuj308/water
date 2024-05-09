@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groundwater Availability</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .c {
+            
+            background-color: rgb(124, 146, 243);
+            
+        }
+        .m {
+            border:black solid;
+            background-image: url("https://img.freepik.com/free-photo/ecosystem-water-drop-nature-background-earth-day-campaign_53876-104839.jpg?size=626&ext=jpg&ga=GA1.1.1815144937.1711963181&semt=sph");
+            background-repeat: no-repeat;
+            background-size:cover;
+            padding: 10px;
+            border-radius:5px;
+            margin-left:10%;
+        }
+        .mm {
+            border:black solid;
+          
+            
+            border-radius:5px;
+            margin-left:10%;
+        }
+        header {
+            background-color: #070135;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            border:black solid;
+           
+            padding: 10px;
+            border-radius:5px;
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        section {
+            padding: 20px;
+        }
+        canvas {
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Groundwater Availability</h1>
+    </header>
+    <nav>
+        <ul >
+            <li class="c"><a href="#overview">Overview</a></li>
+            <li><a href="#barChart">Bar Chart</a></li>
+            <li><a href="#pieChart">Pie Chart</a></li>
+        </ul>
+    </nav>
+    <section id="overview">
+        <h2>Groundwater Overview</h2>
+        <section class="m">
+        <p>  <b>Overview:</b><br>
+            Groundwater is a vital natural resource that accounts for a significant portion of the world's freshwater supply. It is stored beneath the Earth's surface in underground aquifers, which are layers of permeable rock, gravel, sand, or soil that hold water. Groundwater availability varies greatly across different regions due to factors such as geological formations, precipitation patterns, and human activities.</p>
+       <p><b>Factors Influencing Groundwater Availability:</b><br><br>
+        <ol>
+        <li>Geological Conditions: The type and structure of geological formations influence the presence and distribution of groundwater. Porous rocks like sandstone and limestone allow for greater groundwater storage compared to impermeable rocks like granite.</li><br>
+        
+       <li> Climate and Precipitation: Regions with higher rainfall or snowmelt typically have more groundwater recharge, replenishing aquifers. Conversely, arid and semi-arid regions may have limited groundwater availability due to lower precipitation rates.</li><br>
+        
+        <li>Land Use and Human Activities: Human activities such as agriculture, industry, and urbanization can impact groundwater availability. Excessive pumping for irrigation, industrial use, or municipal water supply can lead to groundwater depletion, especially in areas with limited recharge.</li><br>
+        
+        <li>Pollution and Contamination: Groundwater quality can be compromised by pollutants from agricultural runoff, industrial discharges, and improper waste disposal practices. Contamination reduces the availability of usable groundwater for drinking, irrigation, and other purposes</li>.
+    </ol>
+    <p>
+        <b>Sources of Information:</b><br>
+<p>To obtain detailed and up-to-date information about groundwater availability worldwide, you may consider accessing resources such as:</p>
+<ol>
+<li>Government Agencies: Many countries have government agencies or departments responsible for monitoring and managing water resources. These agencies often publish reports, data sets, and maps related to groundwater availability and quality.</li><br>
+
+<li>International Organizations: Organizations like the United Nations (UN), World Bank, and UNESCO may provide global assessments and reports on water resources, including groundwater availability and management.</li><br>
+
+<li>Research Institutions: Universities, research institutes, and non-profit organizations conduct studies and research projects on groundwater resources. Their publications and findings contribute to understanding groundwater availability and related issues.</li><br>
+
+<li>Online Databases and Portals: Some online platforms aggregate data and information related to groundwater, offering access to datasets, maps, and scientific publications from various sources.</li><br>
+
+<li>Hydrological Surveys: Hydrological surveys and studies conducted at regional or local levels provide valuable insights into groundwater conditions, aquifer characteristics, and trends over time.</li><br>
+
+<li>When accessing information about groundwater availability, it's important to consider the reliability and credibility of the sources, as well as the relevance of the data to your specific area of interest. Additionally, consulting local experts and authorities can provide valuable context and insights into regional groundwater dynamics.
+   </ol> 
+</p>
+    </p>
+        </section>
+        </section>
+        <img class="mm" src="https://media.istockphoto.com/id/1178591491/vector/groundwater-vector-illustration-labeled-educational-earth-liquid-exchange.jpg?s=612x612&w=0&k=20&c=Qzxdgu6S2Pm7s4ysI_oEdmae6DCFudLinZBuzcomlW4=" height="50%" width="50%">
+    <section id="barChart">
+        <h2>Groundwater Levels Worldwide (Bar Chart)</h2>
+        <canvas id="barChartCanvas" width="600" height="400"></canvas>
+    </section>
+    <section id="pieChart">
+        <h2>Groundwater Distribution Worldwide (Pie Chart)</h2>
+        <canvas id="pieChartCanvas" width="600" height="400"></canvas>
+    </section>
+    
+
+    <script>
+        // Sample data for bar chart
+        const barChartData = {
+            labels: ['Africa', 'Asia', 'Europe', 'North America', 'South America', 'Oceania'],
+            datasets: [{
+                 label: 'Groundwater Availability (in cubic kilometers)',
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF99CC'
+                ],
+                 borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                data: [200, 500, 300, 250, 150, 100] // Sample data values
+            }]
+        };
+
+        // Sample data for pie chart
+        const pieChartData = {
+            labels: ['Africa', 'Asia', 'Europe', 'North America', 'South America', 'Oceania'],
+            datasets: [{
+                label: 'Groundwater Distribution (%)',
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF99CC'
+                ],
+                data: [20, 30, 15, 10, 15, 10] // Sample data values
+            }]
+        };
+
+        // Creating bar chart
+        var barChartCtx = document.getElementById('barChartCanvas').getContext('2d');
+        var barChart = new Chart(barChartCtx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+
+        // Creating pie chart
+        var pieChartCtx = document.getElementById('pieChartCanvas').getContext('2d');
+        var pieChart = new Chart(pieChartCtx, {
+            type: 'pie',
+            data: pieChartData,
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>
